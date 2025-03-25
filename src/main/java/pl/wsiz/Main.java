@@ -25,11 +25,7 @@ public class Main {
 
 
         System.out.println("Liczba użytkowników: " + usersFromFile.size());
-
-        for(User user: usersFromFile){
-            printUser(user);
-            System.out.println("===========");
-        }
+        System.out.println("Zalogowano uzytkownika o e-mailu: " + loginView.getLoggedUser().getEmail());
     }
 
     private static void printUser(User user){
