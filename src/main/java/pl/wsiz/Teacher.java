@@ -9,4 +9,11 @@ public class Teacher extends User{
         super(firstName,lastName,email,password,dateOfBirth);
         this.academicDegree = academicDegree;
     }
+
+    public Teacher() {
+    }
+
+    public String getAcademicDegree() {
+        return academicDegree;
+    }
 }

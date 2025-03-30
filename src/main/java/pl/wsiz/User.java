@@ -1,9 +1,18 @@
 package pl.wsiz;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Student.class, name = "Student"),
+        @JsonSubTypes.Type(value = Teacher.class, name = "Teacher"),
+        @JsonSubTypes.Type(value = Administrator.class, name = "Administrator")
+})
 
 public abstract class User {
     private String firstName;

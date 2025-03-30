@@ -18,7 +18,9 @@ public class FileUserRepository implements UserRepository {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         try {
-            String json = objectMapper.writeValueAsString(users);
+            String json = objectMapper
+                    .writerFor(new TypeReference<List<User>>(){})
+                    .writeValueAsString(users);
 
             File file = new File("users.json");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
