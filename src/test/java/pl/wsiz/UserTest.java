@@ -10,7 +10,7 @@ class UserTest {
 
     @Test
     void getFirstName() {
-        User user1 = new User("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
+        User user1 = new Teacher("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), "doctor");
 
         String firstName = user1.getFirstName();
 
@@ -19,7 +19,7 @@ class UserTest {
 
     @Test
     void getSecondName(){
-        User user1 = new User("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
+        User user1 = new Student("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), 164357);
 
         String lastName = user1.getLastName();
 
@@ -28,7 +28,7 @@ class UserTest {
 
     @Test
     void getEmail(){
-        User user1 = new User("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
+        User user1 = new Administrator("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
 
         String email = user1.getEmail();
 
@@ -37,7 +37,7 @@ class UserTest {
 
     @Test
     void getDateOfBirth() {
-        User user1 = new User("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
+        User user1 = new Administrator("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
 
         LocalDate dateOfBirth = user1.getDateOfBirth();
 

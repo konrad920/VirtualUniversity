@@ -5,7 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
 
-public class User {
+public abstract class User {
     private String firstName;
     private String lastName;
     private String email;

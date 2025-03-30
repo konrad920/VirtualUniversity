@@ -11,9 +11,9 @@ public class Main {
         FileUserRepository fileUserRepository = new FileUserRepository();
         LoginView loginView = new LoginView(fileUserRepository);
 
-        User user1 = new User("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20));
-        User user2 = new User("Jan", "Kowalski", "janek@gmail.com", "janKowal@13", LocalDate.of(1993,12,4));
-        User user3 = new User("Edyta", "Ciecierzyca", "edyta_ciecz@gmail.com", "czieczEdyta@12", LocalDate.of(1995, 9,16));
+        User user1 = new Student("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), 164367);
+        User user2 = new Teacher("Jan", "Kowalski", "janek@gmail.com", "janKowal@13", LocalDate.of(1993, 12, 4), "Doctor");
+        User user3 = new Administrator("Edyta", "Ciecierzyca", "edyta_ciecz@gmail.com", "czieczEdyta@12", LocalDate.of(1995, 9, 16));
 
         fileUserRepository.insert(user1);
         fileUserRepository.insert(user2);
@@ -28,12 +28,23 @@ public class Main {
         System.out.println("Zalogowano uzytkownika o e-mailu: " + loginView.getLoggedUser().getEmail());
     }
 
-    private static void printUser(User user){
+    private static void printUser(User user) {
         System.out.println("Imie i nazwisko: " + user.getFirstName() + " " + user.getLastName());
         System.out.println("Adres e-mail: " + user.getEmail());
 
         String europeanDatePattern = "dd.MM.yyyy";
         DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
         System.out.println("Data urodzenia: " + user.getDateOfBirth().format(europeanDateFormatter));
+
+        if (user instanceof Administrator) {
+            System.out.println("Rola: Administrator");
+        } else if (user instanceof Student) {
+            System.out.println("Rola: Student");
+        } else if (user instanceof Teacher) {
+            System.out.println("Rola: Nauczyciel");
+        } else {
+            throw new RuntimeException("Nieznany typ użytkownika");
+        }
+
     }
 }
