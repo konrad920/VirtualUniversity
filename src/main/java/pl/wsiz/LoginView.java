@@ -19,16 +19,26 @@ public class LoginView {
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
+        String autologin = System.getenv("USER_AUTOLOGIN");
+        String mail;
+        String password;
+
+        if (autologin != null && autologin.equalsIgnoreCase("true")) {
+            mail = System.getenv("USER_EMAIL");
+            password = System.getenv("USER_PASSWORD");
+        } else {
+            System.out.println("=============");
+            System.out.println("EKRAN LOGOWANIA");
+
+            System.out.print("Podaj adres e-mail: ");
+            mail = scanner.nextLine();
+
+            System.out.print("Podaj hasło: ");
+            password = scanner.nextLine();
+        }
+
         List<User> users = userRepository.findAll();
 
-        System.out.println("=============");
-        System.out.println("EKRAN LOGOWANIA");
-
-        System.out.print("Podaj adres e-mail: ");
-        String mail = scanner.nextLine();
-
-        System.out.print("Podaj hasło: ");
-        String password = scanner.nextLine();
         while (loginCounter > 1) {
             for (User user : users) {
                 if (user.getEmail().equalsIgnoreCase(mail)
