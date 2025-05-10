@@ -1,8 +1,8 @@
-package pl.wsiz;
+package pl.wsiz.repo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.wsiz.model.User;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

@@ -1,10 +1,15 @@
 package pl.wsiz;
 
+import pl.wsiz.model.Administrator;
+import pl.wsiz.model.Student;
+import pl.wsiz.model.Teacher;
+import pl.wsiz.model.User;
+import pl.wsiz.repo.FileUserRepository;
+import pl.wsiz.view.AdministratorMenuView;
+import pl.wsiz.view.LoginView;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,11 +26,18 @@ public class Main {
 
         loginView.login();
 
-        List<User> usersFromFile = fileUserRepository.findAll();
+//        List<User> usersFromFile = fileUserRepository.findAll();
 
 
-        System.out.println("Liczba użytkowników: " + usersFromFile.size());
-        System.out.println("Zalogowano uzytkownika o e-mailu: " + loginView.getLoggedUser().getEmail());
+//        System.out.println("Liczba użytkowników: " + usersFromFile.size());
+//        System.out.println("Zalogowano uzytkownika o e-mailu: " + loginView.getLoggedUser().getEmail());
+
+        User loggedUser = loginView.getLoggedUser();
+        if(loginView.getLoggedUser() instanceof Administrator){
+            AdministratorMenuView administratorMenuView = new AdministratorMenuView(fileUserRepository);
+            administratorMenuView.initialize();
+        }
+
     }
 
     private static void printUser(User user) {

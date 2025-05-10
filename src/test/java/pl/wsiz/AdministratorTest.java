@@ -2,6 +2,7 @@ package pl.wsiz;
 
 import org.junit.jupiter.api.Test;
 import org.mindrot.jbcrypt.BCrypt;
+import pl.wsiz.model.Administrator;
 
 import java.time.LocalDate;
 

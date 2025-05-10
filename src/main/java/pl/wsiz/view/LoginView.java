@@ -1,8 +1,9 @@
-package pl.wsiz;
+package pl.wsiz.view;
 
 import org.mindrot.jbcrypt.BCrypt;
+import pl.wsiz.repo.UserRepository;
+import pl.wsiz.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 

@@ -1,6 +1,7 @@
 package pl.wsiz;
 
 import org.junit.jupiter.api.Test;
+import pl.wsiz.model.Teacher;
 
 import java.time.LocalDate;
 
