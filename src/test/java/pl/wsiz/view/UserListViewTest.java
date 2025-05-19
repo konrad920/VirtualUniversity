@@ -2,6 +2,7 @@ package pl.wsiz.view;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,14 +19,15 @@ class UserListViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Andrzej", "Konrad", "Stanisława"})
-    void withSpacesParameterized(String name) {
+    //@ValueSource(strings = {"Andrzej", "Konrad", "Stanisława"})
+    @CsvSource({"Andrzej,20", "Konrad,10", "Stanisława,40"})
+    void withSpacesParameterized(String name, int value) {
 
         UserListView userListView = new UserListView((null));
 
-        String textWithSpaces = userListView.withSpaces(name, 20);
+        String textWithSpaces = userListView.withSpaces(name, value);
 
-        assertEquals(20, textWithSpaces.length());//sprawdza czy dlugosc tekstu to dokładnie 20 znakow
+        assertEquals(value, textWithSpaces.length());//sprawdza czy dlugosc tekstu jest równa value
         assertTrue(textWithSpaces.startsWith(name));//sprawdza czy tekst zaczyna sie od imienia
 
         String spacesAfterName = textWithSpaces.substring(name.length());
