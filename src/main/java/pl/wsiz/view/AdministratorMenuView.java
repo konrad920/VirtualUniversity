@@ -1,7 +1,9 @@
 package pl.wsiz.view;
 
+import pl.wsiz.model.Student;
 import pl.wsiz.repo.UserRepository;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class AdministratorMenuView {
@@ -21,7 +23,7 @@ public class AdministratorMenuView {
             System.out.println("===================");
 
             AdministratorMenuItem[] items = AdministratorMenuItem.values();
-            for(AdministratorMenuItem item : items){
+            for (AdministratorMenuItem item : items) {
                 System.out.println(item.getNumber() + " - " + item.getDescriptionPL());
             }
 
@@ -31,9 +33,24 @@ public class AdministratorMenuView {
             System.out.println("Co wybierasz?");
             Scanner scanner = new Scanner(System.in);
             chosen = scanner.nextInt();
+            scanner.nextLine();
 
-            if(chosen == AdministratorMenuItem.USER_LIST.getNumber()){
+            if (chosen == AdministratorMenuItem.USER_LIST.getNumber()) {
+
                 new UserListView(userRepository).initialize();
+
+            } else if (chosen == AdministratorMenuItem.ADD_STUDENT.getNumber()) {
+
+                StudentAddView studentAddView = new StudentAddView(userRepository);
+                studentAddView.initialize();
+            } else if (chosen == AdministratorMenuItem.ADD_TEACHER.getNumber()) {
+
+                TeacherAddView teacherAddView = new TeacherAddView(userRepository);
+                teacherAddView.initialize();
+            }else if (chosen == AdministratorMenuItem.ADD_ADMINISTRATOR.getNumber()) {
+
+                AdministratorAddView administratorAddView = new AdministratorAddView(userRepository);
+                administratorAddView.initialize();
             }
         } while (chosen != AdministratorMenuItem.EXIT.getNumber());
     }

@@ -6,6 +6,7 @@ import pl.wsiz.model.Teacher;
 import pl.wsiz.model.User;
 import pl.wsiz.repo.UserRepository;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class UserListView {
@@ -25,6 +26,17 @@ public class UserListView {
                 withSpaces("E-mail", 32) +
                 withSpaces("Rola", 10));
         List<User> users = userRepository.findAll();
+        users.sort(new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                int lastNameCompared = o1.getLastName().compareToIgnoreCase(o2.getLastName());
+                if (lastNameCompared == 0) {
+                    return o1.getFirstName().compareToIgnoreCase(o2.getFirstName());
+                } else {
+                    return lastNameCompared;
+                }
+            }
+        });
         for (User user : users) {
             String role;
             if (user instanceof Administrator) {
@@ -36,9 +48,9 @@ public class UserListView {
             } else {
                 throw new RuntimeException("Nieznany typ użytkownika");
             }
-            System.out.println(withSpaces(user.getFirstName(),20)+
-                    withSpaces(user.getLastName(),20)+
-                    withSpaces(user.getEmail(), 32)+
+            System.out.println(withSpaces(user.getFirstName(), 20) +
+                    withSpaces(user.getLastName(), 20) +
+                    withSpaces(user.getEmail(), 32) +
                     withSpaces(role, 10));
         }
     }

@@ -16,9 +16,9 @@ public class Main {
         FileUserRepository fileUserRepository = new FileUserRepository();
         LoginView loginView = new LoginView(fileUserRepository);
 
-        User user1 = new Student("Adam", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), 164367);
-        User user2 = new Teacher("Jan", "Kowalski", "janek@gmail.com", "janKowal@13", LocalDate.of(1993, 12, 4), "Doctor");
-        User user3 = new Administrator("Edyta", "Ciecierzyca", "edyta_ciecz@gmail.com", "czieczEdyta@12", LocalDate.of(1995, 9, 16));
+        User user1 = new Student("Ewa", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), 164367);
+        User user2 = new Teacher("Kamil", "Kowalski", "janek@gmail.com", "janKowal@13", LocalDate.of(1993, 12, 4), "Doctor");
+        User user3 = new Administrator("Beata", "Ciecierzyca", "edyta_ciecz@gmail.com", "czieczEdyta@12", LocalDate.of(1995, 9, 16));
 
         fileUserRepository.insert(user1);
         fileUserRepository.insert(user2);
