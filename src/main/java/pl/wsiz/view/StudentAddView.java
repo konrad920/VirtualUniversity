@@ -6,30 +6,19 @@ import pl.wsiz.repo.UserRepository;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class StudentAddView {
+public class StudentAddView extends UserDetailsView<Student>{
     Scanner scanner = new Scanner(System.in);
-    private UserRepository userRepository;
 
     public StudentAddView(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        super(userRepository);
     }
 
-    public void initialize(){
-        System.out.print("Podaj imie studenta: ");
-        String name = scanner.nextLine();
-        System.out.print("Podaj nazwisko studenta: ");
-        String surname = scanner.nextLine();
-        System.out.print("Podaj e-mail studenta: ");
-        String email = scanner.nextLine();
-        System.out.print("Podaj hasło studenta: ");
-        String password = scanner.nextLine();
-        System.out.print("Podaj date urodzenia studenta w formacie yyyy-MM-dd: ");
-        LocalDate dateOfBirth = LocalDate.parse(scanner.nextLine());
+    @Override
+    public Student createUser(String name, String surname, String email, String password, LocalDate dateOfBirth) {
         System.out.print("Podaj indeks studenta: ");
-        Long index = scanner.nextLong();
+        long index = scanner.nextLong();
 
-        Student student = new Student(name, surname, email, password, dateOfBirth, index);
-        userRepository.insert(student);
-        System.out.println("Dodano do bazy");
+        return new Student(name, surname, email, password, dateOfBirth, index);
+
     }
 }

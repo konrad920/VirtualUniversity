@@ -17,4 +17,8 @@ public class Student extends User {
     public long getAlbumNumber() {
         return albumNumber;
     }
+
+    public void setAlbumNumber(long albumNumber) {
+        this.albumNumber = albumNumber;
+    }
 }
