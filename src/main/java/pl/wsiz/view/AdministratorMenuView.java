@@ -1,6 +1,7 @@
 package pl.wsiz.view;
 
 import pl.wsiz.model.Student;
+import pl.wsiz.repo.TeacherRepository;
 import pl.wsiz.repo.UserRepository;
 
 import java.time.LocalDate;
@@ -51,6 +52,10 @@ public class AdministratorMenuView {
 
                 AdministratorAddView administratorAddView = new AdministratorAddView(userRepository);
                 administratorAddView.initialize();
+            }else if (chosen == AdministratorMenuItem.TEACHER_STATISTICS.getNumber()){
+
+                TeacherRepository teacherRepository = new TeacherRepository(userRepository);
+                teacherRepository.showStatisticks(teacherRepository.teacherStatisticks());
             }
         } while (chosen != AdministratorMenuItem.EXIT.getNumber());
     }
