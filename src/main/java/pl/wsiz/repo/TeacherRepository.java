@@ -9,14 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class TeacherRepository {
-    private UserRepository fileUserRepository;
+//    private UserRepository fileUserRepository;
+//
+//    public TeacherRepository(UserRepository fileUserRepository) {
+//        this.fileUserRepository = fileUserRepository;
+//    }
 
-    public TeacherRepository(UserRepository fileUserRepository) {
-        this.fileUserRepository = fileUserRepository;
-    }
-
-    public HashMap<String, Integer> teacherStatisticks(){
-        List<User> users = fileUserRepository.findAll();
+    public HashMap<String, Integer> teacherStatisticks(List<User> users){
         List<Teacher> teachers = new ArrayList<>();
 
         for(User user : users){
