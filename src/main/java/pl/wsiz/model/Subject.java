@@ -9,6 +9,9 @@ public class Subject {
         this.ectsPoints = ectsPoints;
     }
 
+    public Subject() {
+    }
+
     public String getName() {
         return name;
     }

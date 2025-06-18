@@ -1,19 +1,30 @@
 package pl.wsiz;
 
-import pl.wsiz.model.Administrator;
-import pl.wsiz.model.Student;
-import pl.wsiz.model.Teacher;
-import pl.wsiz.model.User;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.wsiz.model.*;
+import pl.wsiz.repo.FileSubjectRepository;
 import pl.wsiz.repo.FileUserRepository;
 import pl.wsiz.view.AdministratorMenuView;
 import pl.wsiz.view.LoginView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        FileUserRepository fileUserRepository = new FileUserRepository();
+        FileUserRepository fileUserRepository = new FileUserRepository("users.json", new TypeReference<List<User>>() {}, new ObjectMapper());
+        FileSubjectRepository fileSubjectRepository = new FileSubjectRepository("subjects.json", new TypeReference<List<Subject>>() {}, new ObjectMapper());
+
+        Subject subject1 = new Subject("Matematyka", 12);
+        Subject subject2 = new Subject("Informatyka", 8);
+        Subject subject3 = new Subject("Bazy danych", 10);
+
+        fileSubjectRepository.insert(subject1);
+        fileSubjectRepository.insert(subject2);
+        fileSubjectRepository.insert(subject3);
+
         LoginView loginView = new LoginView(fileUserRepository);
 
         User user1 = new Student("Ewa", "Nowak", "adam@onet.pl", "adam@340", LocalDate.of(1992, 5, 20), 164367);
