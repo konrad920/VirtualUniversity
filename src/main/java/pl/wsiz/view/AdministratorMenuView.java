@@ -2,6 +2,8 @@ package pl.wsiz.view;
 
 import pl.wsiz.model.Student;
 import pl.wsiz.model.User;
+import pl.wsiz.repo.FileSubjectRepository;
+import pl.wsiz.repo.SubjectRepository;
 import pl.wsiz.repo.TeacherRepository;
 import pl.wsiz.repo.UserRepository;
 
@@ -13,9 +15,11 @@ public class AdministratorMenuView {
 
     //public static final int MENU_EXIT = 5;
     private UserRepository userRepository;
+    private SubjectRepository subjectRepository;
 
-    public AdministratorMenuView(UserRepository userRepository) {
+    public AdministratorMenuView(UserRepository userRepository, SubjectRepository subjectRepository) {
         this.userRepository = userRepository;
+        this.subjectRepository = subjectRepository;
     }
 
     public void initialize() {
@@ -59,6 +63,9 @@ public class AdministratorMenuView {
                 TeacherRepository teacherRepository = new TeacherRepository();
                 List<User> users = userRepository.findAll();
                 teacherRepository.showStatisticks(teacherRepository.teacherStatisticks(users));
+            } else if (chosen == AdministratorMenuItem.SUBJECT_LIST.getNumber()) {
+                SubjectListView subjectListView = new SubjectListView(subjectRepository);
+                subjectListView.showSubjectList();
             }
         } while (chosen != AdministratorMenuItem.EXIT.getNumber());
     }

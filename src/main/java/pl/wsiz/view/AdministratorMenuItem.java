@@ -7,7 +7,8 @@ public enum AdministratorMenuItem {
     ADD_TEACHER(3,"dodaj nauczyciela"),
     ADD_ADMINISTRATOR(4,"dodaj administratora"),
     TEACHER_STATISTICS(5,"statystyki nauczycieli"),
-    EXIT(6,"Wyjście");
+    SUBJECT_LIST(6,"lista przedmiotów"),
+    EXIT(7,"Wyjście");
 
     String descriptionPL;
     int number;

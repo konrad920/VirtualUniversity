@@ -45,7 +45,7 @@ public class Main {
 
         User loggedUser = loginView.getLoggedUser();
         if(loginView.getLoggedUser() instanceof Administrator){
-            AdministratorMenuView administratorMenuView = new AdministratorMenuView(fileUserRepository);
+            AdministratorMenuView administratorMenuView = new AdministratorMenuView(fileUserRepository, fileSubjectRepository);
             administratorMenuView.initialize();
         }
 
